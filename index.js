@@ -9,7 +9,7 @@ app.get('/download', async (req, res) => {
     const name = req.query?.name?.toString() ?? '';
     res.setHeader('Content-Disposition', `attachment; filename=${name}`);
     request
-        .get(url, { encoding: null, highWaterMark: 256 * 1024 })
+        .get(url, { encoding: null, highWaterMark: 64 * 1024 })
         .on('error', (err) => {
             console.log(err);
             res.status(500).send('Internal server error');
